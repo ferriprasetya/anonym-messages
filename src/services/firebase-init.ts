@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDIwFxra3u5RILvlbZLXTy9CrLbT6CZM_w",
-  authDomain: "anonym-message.firebaseapp.com",
-  databaseURL: "https://anonym-message-default-rtdb.firebaseio.com",
-  projectId: "anonym-message",
-  storageBucket: "anonym-message.appspot.com",
-  messagingSenderId: "1079644824402",
-  appId: "1:1079644824402:web:f70a4454a025b889ff108b"
+  apiKey: import.meta.env.VITE_APP_API_KEY,
+  authDomain: import.meta.env.VITE_APP_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_APP_DATABASE_UTL,
+  projectId: import.meta.env.VITE_APP_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_APP_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID
 };
 
 // Initialize Firebase

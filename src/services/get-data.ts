@@ -2,7 +2,6 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import database from "./firebase-init";
 
 export const getAllMessages = async () => {
-  const result: any[] = [];
   const docRef = doc(database, "messages", "all");
   const docSnap = await getDoc(docRef);
 
