@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent="sendNewMessage" >
+  <RouterView />
+  <!-- <form @submit.prevent="sendNewMessage" >
     <input type="text" v-model="newMessage">
     <button type="submit">Send</button>
   </form>
@@ -9,8 +10,7 @@
     <p>{{ message.created_at }}</p>
     <p>likes: {{ message.likes }}</p>
     <button @click="likeMessage(message)">Like</button>
-  </div>
-  <RouterView />
+  </div> -->
 </template>
 
 <script setup lang="ts">
@@ -37,8 +37,8 @@ const likeMessage = async (oldData: any) => {
   await getAllMessagesFromFirebase()
 }
 
-onMounted(async () => {
-  await getAllMessagesFromFirebase()
-  console.log(messages.value);
-})
+// onMounted(async () => {
+//   await getAllMessagesFromFirebase()
+//   console.log(messages.value);
+// })
 </script>

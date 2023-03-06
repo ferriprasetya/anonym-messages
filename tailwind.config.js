@@ -5,6 +5,9 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      montserrat: ["Montserrat", "Sans-serif"],
+    },
     extend: {
       colors: {
         primary: "#6B35EC",
