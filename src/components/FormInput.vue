@@ -1,22 +1,46 @@
 <template>
   <form class="w-full flex justify-center gap-4" @submit.prevent="onSubmit">
-    <span class="w-full bg-dark-50 rounded-lg px-5 py-2 xl:px-6 xl:py-3 text-white" placeholder="Write anonymous message..." role="textbox" @input="onInput" contenteditable>{{ message }}</span>
-    <button type="submit"><IconSend class="text-primary w-6 xl:w-8" /></button>
+      <span
+        :contenteditable="!isLoading"
+        class="w-full bg-dark-50 rounded-lg px-5 py-2 xl:px-6 xl:py-3 text-white"
+        placeholder="Write anonymous message..."
+        role="textbox"
+        @input="onInput"
+        @keydown.enter="onSubmit"
+        :class="{'border border-red-900': isError}"
+        >{{ message }}</span
+      >
+    <button :disabled="isLoading" type="submit"><IconSend class="text-primary w-6 xl:w-8" /></button>
   </form>
+  <span v-if="isError" class="text-red-900 text-xs">{{ errorMessage }}</span>
 </template>
 
 <script setup lang="ts">
-import IconSend from '@/components/icons/IconSend.vue';
-import { ref } from 'vue';
-const message = ref("")
+import IconSend from "@/components/icons/IconSend.vue";
+defineProps({
+  message: String,
+  isError: {
+    type: Boolean,
+    default: false
+  },
+  isLoading: {
+    type: Boolean,
+    default: false
+  },
+  errorMessage: {
+    type: String,
+    default: "Input minimum 3 character !"
+  },
+});
+const emit = defineEmits(["onInput", "onSubmit"]);
+
 const onSubmit = () => {
-  console.log(message.value);
-}
+  emit("onSubmit");
+};
 
 const onInput = (e: any) => {
-  message.value = e.target.innerText
-}
-
+  emit("onInput", e.target.innerText);
+};
 </script>
 
 <style>
@@ -24,7 +48,7 @@ const onInput = (e: any) => {
   content: attr(placeholder);
   font-weight: 400;
   position: absolute;
-  color: #9D9CA3;
+  color: #9d9ca3;
   background-color: transparent;
 }
 </style>
